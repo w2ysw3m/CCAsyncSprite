@@ -266,6 +266,10 @@
 		0430D7E4179E2DFF003F2CC9 /* cpVect.c in Sources */ = {isa = PBXBuildFile; fileRef = 0430D7E3179E2DFF003F2CC9 /* cpVect.c */; };
 		0430D7EB179E2DFF003F2CC9 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0430D7EA179E2DFF003F2CC9 /* AppDelegate.cpp */; };
 		0430D7EE179E2DFF003F2CC9 /* HelloWorldScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0430D7ED179E2DFF003F2CC9 /* HelloWorldScene.cpp */; };
+		0430D810179E9A60003F2CC9 /* NetworkOperation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0430D806179E9A60003F2CC9 /* NetworkOperation.cpp */; };
+		0430D811179E9A60003F2CC9 /* NetworkOperationQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0430D808179E9A60003F2CC9 /* NetworkOperationQueue.cpp */; };
+		0430D812179E9A60003F2CC9 /* CCAsyncSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0430D80B179E9A60003F2CC9 /* CCAsyncSprite.cpp */; };
+		0430D813179E9A60003F2CC9 /* RC4Encrypt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0430D80E179E9A60003F2CC9 /* RC4Encrypt.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -832,6 +836,14 @@
 		0430D7EA179E2DFF003F2CC9 /* AppDelegate.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = AppDelegate.cpp; path = Classes/AppDelegate.cpp; sourceTree = "<group>"; };
 		0430D7EC179E2DFF003F2CC9 /* HelloWorldScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HelloWorldScene.h; path = Classes/HelloWorldScene.h; sourceTree = "<group>"; };
 		0430D7ED179E2DFF003F2CC9 /* HelloWorldScene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = HelloWorldScene.cpp; path = Classes/HelloWorldScene.cpp; sourceTree = "<group>"; };
+		0430D806179E9A60003F2CC9 /* NetworkOperation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NetworkOperation.cpp; sourceTree = "<group>"; };
+		0430D807179E9A60003F2CC9 /* NetworkOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkOperation.h; sourceTree = "<group>"; };
+		0430D808179E9A60003F2CC9 /* NetworkOperationQueue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NetworkOperationQueue.cpp; sourceTree = "<group>"; };
+		0430D809179E9A60003F2CC9 /* NetworkOperationQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkOperationQueue.h; sourceTree = "<group>"; };
+		0430D80B179E9A60003F2CC9 /* CCAsyncSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCAsyncSprite.cpp; sourceTree = "<group>"; };
+		0430D80C179E9A60003F2CC9 /* CCAsyncSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCAsyncSprite.h; sourceTree = "<group>"; };
+		0430D80E179E9A60003F2CC9 /* RC4Encrypt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RC4Encrypt.cpp; sourceTree = "<group>"; };
+		0430D80F179E9A60003F2CC9 /* RC4Encrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RC4Encrypt.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1976,12 +1988,47 @@
 		0430D7E8179E2DFF003F2CC9 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				0430D805179E9A60003F2CC9 /* AsyncSpriteDownload */,
+				0430D80A179E9A60003F2CC9 /* CCAsyncSprite */,
+				0430D80D179E9A60003F2CC9 /* RC4Encrypt */,
 				0430D7E9179E2DFF003F2CC9 /* AppDelegate.h */,
 				0430D7EA179E2DFF003F2CC9 /* AppDelegate.cpp */,
 				0430D7EC179E2DFF003F2CC9 /* HelloWorldScene.h */,
 				0430D7ED179E2DFF003F2CC9 /* HelloWorldScene.cpp */,
 			);
 			name = Classes;
+			sourceTree = "<group>";
+		};
+		0430D805179E9A60003F2CC9 /* AsyncSpriteDownload */ = {
+			isa = PBXGroup;
+			children = (
+				0430D806179E9A60003F2CC9 /* NetworkOperation.cpp */,
+				0430D807179E9A60003F2CC9 /* NetworkOperation.h */,
+				0430D808179E9A60003F2CC9 /* NetworkOperationQueue.cpp */,
+				0430D809179E9A60003F2CC9 /* NetworkOperationQueue.h */,
+			);
+			name = AsyncSpriteDownload;
+			path = Classes/AsyncSpriteDownload;
+			sourceTree = "<group>";
+		};
+		0430D80A179E9A60003F2CC9 /* CCAsyncSprite */ = {
+			isa = PBXGroup;
+			children = (
+				0430D80B179E9A60003F2CC9 /* CCAsyncSprite.cpp */,
+				0430D80C179E9A60003F2CC9 /* CCAsyncSprite.h */,
+			);
+			name = CCAsyncSprite;
+			path = Classes/CCAsyncSprite;
+			sourceTree = "<group>";
+		};
+		0430D80D179E9A60003F2CC9 /* RC4Encrypt */ = {
+			isa = PBXGroup;
+			children = (
+				0430D80E179E9A60003F2CC9 /* RC4Encrypt.cpp */,
+				0430D80F179E9A60003F2CC9 /* RC4Encrypt.h */,
+			);
+			name = RC4Encrypt;
+			path = Classes/RC4Encrypt;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2293,6 +2340,10 @@
 				0430D7E4179E2DFF003F2CC9 /* cpVect.c in Sources */,
 				0430D7EB179E2DFF003F2CC9 /* AppDelegate.cpp in Sources */,
 				0430D7EE179E2DFF003F2CC9 /* HelloWorldScene.cpp in Sources */,
+				0430D810179E9A60003F2CC9 /* NetworkOperation.cpp in Sources */,
+				0430D811179E9A60003F2CC9 /* NetworkOperationQueue.cpp in Sources */,
+				0430D812179E9A60003F2CC9 /* CCAsyncSprite.cpp in Sources */,
+				0430D813179E9A60003F2CC9 /* RC4Encrypt.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2430,6 +2481,7 @@
 				0430D7F3179E2DFF003F2CC9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
