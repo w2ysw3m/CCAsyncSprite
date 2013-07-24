@@ -18,6 +18,10 @@ USING_NS_CC;
 class CCAsyncSprite :public CCSprite, public NetworkOperationDelegate  {
     
 public:
+    
+    CCAsyncSprite(){};
+    ~CCAsyncSprite();
+    
     static CCAsyncSprite *createWithUrl(const char* pszUrl);
     
     virtual void operationDidFinish(NetworkOperation *operation);

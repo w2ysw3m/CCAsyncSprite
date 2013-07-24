@@ -11,6 +11,10 @@
 #include "LocalStorage.h"
 #include "RC4Encrypt.h"
 
+CCAsyncSprite::~CCAsyncSprite(){
+    NetworkOperationQueue::sharedInstance()->cancelOperationsForDelegate(this);
+}
+
 CCAsyncSprite *CCAsyncSprite::createWithUrl(const char *pszUrl){
     CCSpriteFrame *spriteFrame = CCSpriteFrame::create("CloseNormal.png", CCRectMake(0, 0, 30, 30));// CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("EP0.png");
     CCAsyncSprite *ret = new CCAsyncSprite();
