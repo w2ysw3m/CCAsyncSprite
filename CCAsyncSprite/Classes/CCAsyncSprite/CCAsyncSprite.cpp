@@ -26,10 +26,10 @@ CCAsyncSprite *CCAsyncSprite::createWithUrl(const char *pszUrl){
 }
 
 bool CCAsyncSprite::initWithUrl(const char *pszUrl){
-    const char* rawdata = localStorageGetItem(pszUrl);
-    const char* rawcharSize = localStorageGetItem(string(string(pszUrl)+"size").c_str());
-    char *data = RC4Encrypt::Decrypt(rawdata);
-    char *charSize = RC4Encrypt::Decrypt(rawcharSize);
+    const char* data = localStorageGetItem(pszUrl);
+    const char* charSize = localStorageGetItem(string(string(pszUrl)+"size").c_str());
+//    char *data = RC4Encrypt::Decrypt(rawdata);
+//    char *charSize = RC4Encrypt::Decrypt(rawcharSize);
     size_t size = 0;
     if (charSize != NULL) {
         size = atoi(charSize);
@@ -74,12 +74,12 @@ void CCAsyncSprite::setImage(const char *data, size_t size, const string &url){
         if (format != CCImage::kFmtUnKnown) {
             setImageWithRawData(data, size, format);
             //缓存
-            char *rawdata = RC4Encrypt::Encrypt(data);
-            localStorageSetItem(url.c_str(), rawdata);
-            char charSize[128] = {0};
-            sprintf(charSize, "%ld", size);
-            char *rawCharSize = RC4Encrypt::Encrypt(charSize);
-            localStorageSetItem(string(url+"size").c_str(), rawCharSize);
+//            char *rawdata = RC4Encrypt::Encrypt(data);
+//            localStorageSetItem(url.c_str(), rawdata);
+//            char charSize[128] = {0};
+//            sprintf(charSize, "%ld", size);
+//            char *rawCharSize = RC4Encrypt::Encrypt(charSize);
+//            localStorageSetItem(string(url+"size").c_str(), rawCharSize);
         }
     }
 }
