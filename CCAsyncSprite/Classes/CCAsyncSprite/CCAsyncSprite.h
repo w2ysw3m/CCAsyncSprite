@@ -28,8 +28,10 @@ public:
     virtual void operationDidFail(NetworkOperation *operation);
     
     bool initWithUrl(const char* pszUrl);
-    void setImageWithRawData(const char *data, size_t size, CCImage::EImageFormat format);
+    void setSpriteWithCCImage(CCImage *img);
     void setImage(const char *data, size_t size, const string &url);
+    
+    std::string m_strFileName;
 };
 
 #endif /* defined(__CCAsyncSprite__CCAsyncSprite__) */

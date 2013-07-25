@@ -16,7 +16,7 @@ CCAsyncSprite::~CCAsyncSprite(){
 }
 
 CCAsyncSprite *CCAsyncSprite::createWithUrl(const char *pszUrl){
-    CCSpriteFrame *spriteFrame = CCSpriteFrame::create("CloseNormal.png", CCRectMake(0, 0, 30, 30));// CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("EP0.png");
+    CCSpriteFrame *spriteFrame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("EP0.png"); //CCSpriteFrame::create("CloseNormal.png", CCRectMake(0, 0, 30, 30));
     CCAsyncSprite *ret = new CCAsyncSprite();
     if (ret && ret->initWithSpriteFrame(spriteFrame)) {
         ret->autorelease();
@@ -26,16 +26,18 @@ CCAsyncSprite *CCAsyncSprite::createWithUrl(const char *pszUrl){
 }
 
 bool CCAsyncSprite::initWithUrl(const char *pszUrl){
-    const char* data = localStorageGetItem(pszUrl);
-    const char* charSize = localStorageGetItem(string(string(pszUrl)+"size").c_str());
-//    char *data = RC4Encrypt::Decrypt(rawdata);
-//    char *charSize = RC4Encrypt::Decrypt(rawcharSize);
-    size_t size = 0;
-    if (charSize != NULL) {
-        size = atoi(charSize);
+    string url(pszUrl);
+    size_t pos = url.find_last_of('/');
+    if (pos != string::npos) {
+        m_strFileName = url.substr(pos, url.size()+1);
     }
-    if (data != NULL && size != 0) {
-        setImage(data, size, string(pszUrl));
+    else {
+        return false;
+    }
+    
+    CCImage *image = new CCImage();
+    if (image->initWithImageFile((CCFileUtils::sharedFileUtils()->getWritablePath()+m_strFileName).c_str())){
+        setSpriteWithCCImage(image);
     }
     else {
         NetworkOperation *op = new NetworkOperation(pszUrl);
@@ -72,21 +74,18 @@ void CCAsyncSprite::setImage(const char *data, size_t size, const string &url){
             format = CCImage::kFmtJpg;
         }
         if (format != CCImage::kFmtUnKnown) {
-            setImageWithRawData(data, size, format);
-            //缓存
-//            char *rawdata = RC4Encrypt::Encrypt(data);
-//            localStorageSetItem(url.c_str(), rawdata);
-//            char charSize[128] = {0};
-//            sprintf(charSize, "%ld", size);
-//            char *rawCharSize = RC4Encrypt::Encrypt(charSize);
-//            localStorageSetItem(string(url+"size").c_str(), rawCharSize);
+            
+            CCImage* img = new CCImage;
+            img->initWithImageData((void*)data, (long)size, format);
+            
+            setSpriteWithCCImage(img);
+            img->saveToFile((CCFileUtils::sharedFileUtils()->getWritablePath()+m_strFileName).c_str());
         }
     }
 }
 
-void CCAsyncSprite::setImageWithRawData(const char *data, size_t size, CCImage::EImageFormat format){
-    CCImage* img = new CCImage;
-    img->initWithImageData((void*)data, (long)size, format);
+void CCAsyncSprite::setSpriteWithCCImage(CCImage *img){
+
     cocos2d::CCTexture2D* texture = new cocos2d::CCTexture2D();
     texture->initWithImage(img);
     CCSpriteFrame *frame = CCSpriteFrame::createWithTexture(texture, CCRectMake(0, 0, texture->getContentSize().width, texture->getContentSize().height));
